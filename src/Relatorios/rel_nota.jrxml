@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_nota" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="323d2c16-905d-4fb2-9718-c5cbe70a2a2e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="245"/>
+	<property name="ireport.y" value="234"/>
+	<parameter name="id_pagamento" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tb_pessoas.`nome_pessoa` AS tb_pessoas_nome_pessoa,
+     tb_pessoas.`num_documento` AS tb_pessoas_num_documento,
+     tb_pessoas.`endereco` AS tb_pessoas_endereco,
+     tb_reservas.`valor_quarto` AS tb_reservas_valor_quarto,
+     tb_pagamentos.`tipo_comprovante` AS tb_pagamentos_tipo_comprovante,
+     tb_pagamentos.`num_comprovante` AS tb_pagamentos_num_comprovante,
+     tb_pagamentos.`total_pagamento` AS tb_pagamentos_total_pagamento,
+     tb_pagamentos.`data_emissao` AS tb_pagamentos_data_emissao,
+'Quarto' as descricao,
+'1' as quantidade
+FROM
+     `tb_reservas` tb_reservas INNER JOIN `tb_pagamentos` tb_pagamentos ON tb_reservas.`id_reserva` = tb_pagamentos.`id_reserva`,
+     `tb_clientes` tb_clientes,
+     `tb_pessoas` tb_pessoas
+where tb_pagamentos. `id_pagamento` = $P{id_pagamento}]]>
+	</queryString>
+	<field name="tb_pessoas_nome_pessoa" class="java.lang.String"/>
+	<field name="tb_pessoas_num_documento" class="java.lang.String"/>
+	<field name="tb_pessoas_endereco" class="java.lang.String"/>
+	<field name="tb_reservas_valor_quarto" class="java.math.BigDecimal"/>
+	<field name="tb_pagamentos_tipo_comprovante" class="java.lang.String"/>
+	<field name="tb_pagamentos_num_comprovante" class="java.lang.String"/>
+	<field name="tb_pagamentos_total_pagamento" class="java.math.BigDecimal"/>
+	<field name="tb_pagamentos_data_emissao" class="java.sql.Date"/>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="descricao_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{descricao}]]></variableExpression>
+	</variable>
+	<variable name="descricao_2" class="java.lang.Integer" resetType="Column" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{descricao}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="216" splitType="Stretch">
+			<image>
+				<reportElement x="11" y="12" width="199" height="164" uuid="5d62f390-9804-4f1f-9786-24a7709991b3"/>
+				<imageExpression><![CDATA["C:\\Users\\Leandro Marques\\Documents\\NetBeansProjects\\SistemaDeReservas\\src\\Files\\images\\icones\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="248" y="27" width="203" height="41" uuid="e5976375-8bed-4025-98c1-94cfc326683e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Leandro HOTEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="27" width="63" height="41" uuid="022916b4-410d-45dd-b731-7bad3314445b"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[SAC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="91" width="193" height="20" uuid="28cad75b-2044-4445-9073-ed0b5f80c638"/>
+				<text><![CDATA[Rua: Paraná, 1000]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="130" width="100" height="20" uuid="ed97caa7-e152-42c5-bb0e-9c482c732a4a"/>
+				<text><![CDATA[Telefone> (43) 3025-5818]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="176" width="215" height="20" uuid="67cb931d-1139-42df-ba40-ef84c5ae4fee"/>
+				<text><![CDATA[reservas#leandrohotel.com.br]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="619" y="27" width="183" height="26" uuid="a05d2bb9-1a6f-430b-9fa5-bda0a300c12f"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_pagamentos_tipo_comprovante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="619" y="68" width="183" height="20" uuid="54d939d8-d6a7-45db-bf9c-b07fef4f5a61"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_pagamentos_num_comprovante}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="130" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="20" width="100" height="20" uuid="482a8786-18dd-4e56-86ee-422311d7a33d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="56" width="100" height="20" uuid="0760d5f5-f2f9-4e00-940b-ab841d8b1bd1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="87" width="100" height="20" uuid="ffef0c38-1a84-4b37-95a4-5c878c287e9a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="20" width="119" height="20" uuid="e2c498b0-6cd1-4a02-9485-13a643ae5d37"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Emissão:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="20" width="316" height="20" uuid="8495d9b2-7779-4abf-9b45-e06c2e8f55b0"/>
+				<textFieldExpression><![CDATA[$F{tb_pessoas_nome_pessoa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="87" width="316" height="20" uuid="b11c200d-d3bb-43f0-98b7-a5ae05f1a1d7"/>
+				<textFieldExpression><![CDATA[$F{tb_pessoas_endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="56" width="306" height="20" uuid="aa21a87b-9deb-4993-81f2-14e3b0078137"/>
+				<textFieldExpression><![CDATA[$F{tb_pessoas_num_documento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="633" y="20" width="149" height="20" uuid="e0ac45dc-2d5a-47f5-8418-22de7202e409"/>
+				<textFieldExpression><![CDATA[$F{tb_pagamentos_data_emissao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="536" y="66" width="208" height="39" uuid="177799e2-aa06-489f-ad16-ea75df6b6cb9"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="0" y="6" width="574" height="20" uuid="f228802f-265f-4738-9cf9-aaba2cdb8cac"/>
+			</rectangle>
+			<textField>
+				<reportElement x="148" y="46" width="100" height="20" uuid="3a8ae9d6-7003-4622-bc75-27fe3f0915fe"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="6" width="100" height="20" uuid="6ba6aab9-6fe5-471a-b0ea-6f22af677d87"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="6" width="100" height="20" uuid="07c45feb-82a8-4c30-b618-32df4d434e35"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="11" y="46" width="100" height="20" uuid="093a67e8-9eea-4a94-9f4f-18bed86f7294"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="272" y="6" width="100" height="20" uuid="37493b47-735c-40c5-a914-c0f03251181c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Unitário]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="272" y="46" width="100" height="20" uuid="0ae64c61-5a6b-48c7-be58-f17fb49e241c"/>
+				<textFieldExpression><![CDATA[$F{tb_reservas_valor_quarto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="451" y="6" width="100" height="20" uuid="7daf1db5-c288-4433-a16d-5f5db78054ba"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="644" y="85" width="100" height="20" backcolor="#FF0033" uuid="bb2ca456-3131-4230-bcdd-4b3ebc58cd84"/>
+				<textFieldExpression><![CDATA[$F{tb_pagamentos_total_pagamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="551" y="85" width="100" height="20" uuid="4609d3df-5cd9-4727-9a3f-e8d52d5adf35"/>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

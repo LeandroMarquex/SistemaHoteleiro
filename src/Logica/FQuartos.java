@@ -59,6 +59,42 @@ public class FQuartos {
         }
 
     }
+     public DefaultTableModel mostrarQuartos(String buscar) {
+
+        DefaultTableModel modelo;
+        String[] titulos = {"ID", "Número", "Andar", "Descrição", "Caracteristicas", "Preço", "Estado", "Tipo de Quarto"};
+        String[] registros = new String[8];
+        totalRegistros = 0;
+
+        modelo = new DefaultTableModel(null, titulos);
+        sSQL = "select * from tb_quartos where andar like '%" + buscar + "%' and estado='Disponível' order by id_quartos";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                registros[0] = rs.getString("id_quartos");
+                registros[1] = rs.getString("numero");
+                registros[2] = rs.getString("andar");
+                registros[3] = rs.getString("descricao");
+                registros[4] = rs.getString("caracteristica");
+                registros[5] = rs.getString("preco_diaria");
+                registros[6] = rs.getString("estado");
+                registros[7] = rs.getString("tipo_quarto");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+
+            return modelo;
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 
     public boolean inserir(VQuartos dts) {
 
@@ -104,6 +140,50 @@ public class FQuartos {
             pst.setString(6, dts.getEstado());
             pst.setString(7, dts.getTipoQuarto());
             pst.setInt(8, dts.getIdQuartos());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }
+    }
+    public boolean desocupar(VQuartos dts) {
+        sSQL = "update tb_quartos set estado='Disponível' where id_quartos=?";
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+
+           
+  //          pst.setString(1, dts.getEstado());
+            pst.setInt(1, dts.getIdQuartos());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }
+    }
+     public boolean ocupar(VQuartos dts) {
+        sSQL = " update tb_quartos set estado = 'ocupado' where id_quartos = ?";
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+
+           
+ //           pst.setString(1, dts.getEstado());
+            pst.setInt(1, dts.getIdQuartos());
 
             int n = pst.executeUpdate();
             if (n != 0) {

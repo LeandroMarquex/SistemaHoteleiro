@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_quartos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="def3fe02-8fba-4030-8088-e93944eb5b28">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="118"/>
+	<queryString>
+		<![CDATA[SELECT
+     tb_quartos.`id_quartos` AS tb_quartos_id_quartos,
+     tb_quartos.`numero` AS tb_quartos_numero,
+     tb_quartos.`andar` AS tb_quartos_andar,
+     tb_quartos.`descricao` AS tb_quartos_descricao,
+     tb_quartos.`caracteristica` AS tb_quartos_caracteristica,
+     tb_quartos.`preco_diaria` AS tb_quartos_preco_diaria,
+     tb_quartos.`estado` AS tb_quartos_estado,
+     tb_quartos.`tipo_quarto` AS tb_quartos_tipo_quarto
+FROM
+     `tb_quartos` tb_quartos]]>
+	</queryString>
+	<field name="tb_quartos_id_quartos" class="java.lang.Integer"/>
+	<field name="tb_quartos_numero" class="java.lang.String"/>
+	<field name="tb_quartos_andar" class="java.lang.String"/>
+	<field name="tb_quartos_descricao" class="java.lang.String"/>
+	<field name="tb_quartos_caracteristica" class="java.lang.String"/>
+	<field name="tb_quartos_preco_diaria" class="java.math.BigDecimal"/>
+	<field name="tb_quartos_estado" class="java.lang.String"/>
+	<field name="tb_quartos_tipo_quarto" class="java.lang.String"/>
+	<variable name="tb_quartos_numero_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{tb_quartos_numero}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="726" height="92" backcolor="#006699" uuid="a6dd4c02-a0af-4866-9201-8775a80c807e"/>
+				<staticText>
+					<reportElement x="20" y="20" width="302" height="43" forecolor="#FFFFFF" uuid="e6a6a5eb-229d-4cba-8bf1-df9073227fe7"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pousada Marques]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="37dec25d-2cf7-4320-8421-986f9ccb2262"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Lista de Quartos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="73">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="183" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="620a1122-7509-47cb-a790-f999cd9c795d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DetailLabel]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="08ff107d-77a8-4f07-9bb1-710bc4fa7c5d"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="32" width="77" height="20" uuid="3cf47b75-0617-4804-8bca-2b164d24dab0"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="32" width="100" height="20" uuid="453dca6c-bacd-41ec-b323-79a7bf9b48cd"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Andar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="32" width="100" height="20" uuid="162e3ed9-7d03-4018-94da-156ed2e97009"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Caractereisticas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="32" width="100" height="20" uuid="31a6803c-18ac-470d-8a84-7e8fb1d4efa0"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Diária]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="137">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="58d22612-a64b-4951-87d8-a85327724365"/>
+			</line>
+			<textField>
+				<reportElement x="15" y="31" width="100" height="20" uuid="20e04410-4b59-4fac-9f76-60abb986f4d4"/>
+				<textFieldExpression><![CDATA[$F{tb_quartos_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="31" width="100" height="20" uuid="061a5848-0c26-4e6f-975a-816ef37018f7"/>
+				<textFieldExpression><![CDATA[$F{tb_quartos_andar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="31" width="100" height="20" uuid="a549ef84-292d-4374-b0d0-8f586d452b58"/>
+				<textFieldExpression><![CDATA[$F{tb_quartos_caracteristica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="31" width="100" height="20" uuid="47eccdc5-d423-47cd-aace-adecaff786b1"/>
+				<textFieldExpression><![CDATA[$F{tb_quartos_preco_diaria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="162">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="cdfc699d-2be4-40de-aba2-d111b5c307c9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="dd55ba6e-1972-4584-bfb7-802f595f92cb"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="d703a55e-978f-4684-b8aa-753d57f17999"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

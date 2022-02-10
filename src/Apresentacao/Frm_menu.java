@@ -109,6 +109,11 @@ public class Frm_menu extends javax.swing.JFrame {
         s_menu_reservas.setMnemonic('c');
         s_menu_reservas.setText("RESERVAS E CONSUMOS");
         s_menu_reservas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        s_menu_reservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s_menu_reservasActionPerformed(evt);
+            }
+        });
         menu_reservas.add(s_menu_reservas);
 
         s_menu_clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/images/icones/clientes.png"))); // NOI18N
@@ -234,8 +239,20 @@ public class Frm_menu extends javax.swing.JFrame {
 
     private void menu_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_sairMouseClicked
         // TODO add your handling code here:
-          this.dispose();
+        this.dispose();
     }//GEN-LAST:event_menu_sairMouseClicked
+
+    private void s_menu_reservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s_menu_reservasActionPerformed
+        // TODO add your handling code here:
+        Frm_reservas form = new Frm_reservas();
+        menu.add(form);
+        form.toFront();
+        form.setVisible(true);
+        
+        Frm_reservas.txt_id_funcionario.setText(LB_id.getText());
+        Frm_reservas.txt_funcionario.setText(LB_nome.getText());
+                
+    }//GEN-LAST:event_s_menu_reservasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,7 +293,7 @@ public class Frm_menu extends javax.swing.JFrame {
     public static javax.swing.JLabel LB_acesso;
     public static javax.swing.JLabel LB_id;
     public static javax.swing.JLabel LB_nome;
-    private javax.swing.JDesktopPane menu;
+    public static javax.swing.JDesktopPane menu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menu_ajuda;
     public static javax.swing.JMenu menu_arquivo;

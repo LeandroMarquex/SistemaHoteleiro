@@ -185,4 +185,39 @@ public class FClientes {
 
         }
     }
+
+    public DefaultTableModel mostrarClientes(String buscar) {
+         DefaultTableModel modelo;
+        String[] titulos = {"ID", "Número", "Andar", "Descrição", "Caracteristicas", "Preço", "Estado", "Tipo de Quarto"};
+        String[] registros = new String[8];
+        totalRegistros = 0;
+
+        modelo = new DefaultTableModel(null, titulos);
+        sSQL = "select * from tb_quartos where andar like '%" + buscar + "%' and estado='Disponível' order by id_quartos";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            while (rs.next()) {
+                registros[0] = rs.getString("id_quartos");
+                registros[1] = rs.getString("numero");
+                registros[2] = rs.getString("andar");
+                registros[3] = rs.getString("descricao");
+                registros[4] = rs.getString("caracteristica");
+                registros[5] = rs.getString("preco_diaria");
+                registros[6] = rs.getString("estado");
+                registros[7] = rs.getString("tipo_quarto");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+
+            return modelo;
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }

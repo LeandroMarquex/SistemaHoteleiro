@@ -560,7 +560,7 @@ public class Frm_produtos extends javax.swing.JInternalFrame{
     private javax.swing.JLabel lb_registros;
     private javax.swing.JTable tb_lista;
     private javax.swing.JTextArea txt_descricao;
-    private javax.swing.JTextField txt_id_produtos;
+    public static javax.swing.JTextField txt_id_produtos;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_pesquisa;
     private javax.swing.JTextField txt_valorDiaria;
